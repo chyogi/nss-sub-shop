@@ -53,14 +53,18 @@ document.getElementById("app").innerHTML = `
             <input id="blackOlives" name="toppings" type="checkbox" value="black olives" />
             <label for="blackOlives">Black Olives</label>
             </li>
-          
-          
           </div>
-          
-            
-          
-        </ul>
+          </ul>
     </div>
+  <div class="toasted">
+      <p>Do you want it toasted?</p>
+      <label for="yes">yes</label>
+      <input id="yes" name="toasted" type="radio" value="yes" />
+      <label for="no">no</label>
+      <input id="no" name="toasted" type="radio" value="no" checked="checked" />
+    </div>
+
+    <br>
     <div class="extras">
       <label for="specialInstructions">Notes/Special Instructions</label>
       <div>
@@ -76,11 +80,12 @@ document.getElementById("app").innerHTML = `
 </div>
 `;
 
+
 const displayOrders = () => {
   const orders = getOrders();
   //console.log(orders);
-  console.log(orders.sort((a, b) => b.id - a.id));
-   console.log(orders);
+ // console.log(orders.sort((a, b) => b.id - a.id));
+  // console.log(orders);
   // Add logic here to put the orders on the DOM
   let html = "";
   for (let order of orders) {
@@ -89,6 +94,7 @@ const displayOrders = () => {
       <p>bread: ${order.bread}</p>
       <p>protein: ${order.protein}</p>
       <p>toppings: ${order.toppings.join(", ")}</p>
+      <p>toasted:${order.toasted}</p>
       <p>Special Instructions: ${order.instructions}</p>
     </div>`;
   }
@@ -103,6 +109,9 @@ document.addEventListener("click", (e) => {
     const breadInput = document.querySelector(
       "input[name=bread]:checked"
     )?.value;
+    const proteinInput = document.querySelector(
+      "input[name=protein]:checked"
+    )?.value;
     const toppingsElements = document.querySelectorAll(
       "input[name=toppings]:checked"
     );
@@ -111,12 +120,17 @@ document.addEventListener("click", (e) => {
       console.log(toppingElement.value);
       toppingsArray.push(toppingElement.value);
     });
+    const toastedInput = document.querySelector(
+      "input[name=toasted]:checked"
+    )?.value;
     const instructions = document.getElementById("specialInstructions")?.value;
     console.log(instructions);
 
     const newOrder = {
       bread: breadInput,
       toppings: toppingsArray,
+      protein:proteinInput,
+      toasted:toastedInput,
       instructions: instructions
     }
     addNewOrder(newOrder)

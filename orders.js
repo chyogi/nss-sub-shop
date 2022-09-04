@@ -4,14 +4,16 @@
     bread: "wheat Bread",
     protein: "chicken",
     toppings: ["pepperoni", "lettuce"],
-    instructions: "extra cheese"
+    instructions: "extra cheese",
+    toasted:"yes"
   },
   {
     id: 2,
     bread: "italian Bread",
     protein: "ham",
     toppings: ["Black Olives", "onion"],
-    instructions: "half green peppers"
+    instructions: "half green peppers",
+    toasted:"no"
   }
 ]
 const getNewOrderId = () => {
